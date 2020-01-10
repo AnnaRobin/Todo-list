@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import HelloWorld from "./HelloWorld";
+import Checkbox from "./Checkbox";
 
 const init = [
   {id:1, label: 'todo1', done:false},
@@ -32,11 +33,33 @@ function App() {
   });
   }
   return <div>
-    {todos.filter(todo => todo.done === false).map((todo, index) => <div onClick={() => done(todo.id)}>{todo.label}</div>)}
-    <br/>
-    {todos.filter(todo => todo.done === true).map((todo,index) => <div onClick={() => undone(todo.id)}>{todo.label}</div>)}
+    
+
+ 
+
+    <hr/>
+    {todos
+      .filter(todo => todo.done === false)
+      .map(todo => {
+        return (
+          <div onClick={() => done(todo.id)} >
+            <input type="checkbox" checked/>
+            <div >{todo.label} </div> 
+        </div>
+        ); 
+      })}
+    <hr/>
+    {todos
+    .filter(todo => todo.done === true)
+    .map(todo => {
+      return <div>
+        <input type="checkbox"/>
+        <div onClick={() => undone(todo.id)}>{todo.label}</div>
+        </div>
+        })}
   </div>
-  
+
 }
+
 
 export default App;

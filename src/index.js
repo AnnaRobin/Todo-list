@@ -10,3 +10,20 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+const Checkbox = ({ label, isSelected, onCheckboxChange }) => (
+    <div className="form-check">
+      <label>
+        <input
+          type="checkbox"
+          name={label}
+          checked={isSelected}
+          onChange={onCheckboxChange}
+          className="form-check-input"
+        />
+        {label}
+      </label>
+    </div>
+  );
+  
+  export default Checkbox;
