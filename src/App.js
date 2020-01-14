@@ -2,7 +2,18 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import HelloWorld from "./HelloWorld";
-import Checkbox from "./Checkbox";
+
+
+function Affichage(props) {
+return <h1>Toto, {props.azerty}</h1>
+}
+
+function Item(props) {
+  return ( <div onClick={props.onClick}>
+  <input type="checkbox" checked={props.checked} value={props.checked} onChange={()=>{}}/>
+  <span >{props.label}</span>
+</div>);
+}
 
 const init = [
   {id:1, label: 'todo1', done:false},
@@ -17,7 +28,7 @@ function App() {
   console.log("RENDER")
 
   const done = (id) => {
-    setTodos(state => {
+   setTodos(state => {
       return state.map(todo => {
         if (todo.id !== id) return todo;
         return {...todo, done: true};
@@ -33,30 +44,23 @@ function App() {
   });
   }
   return <div>
-    
-
- 
-
+    <Affichage azerty="kikou" />
     <hr/>
     {todos
       .filter(todo => todo.done === false)
       .map(todo => {
         return (
-          <div onClick={() => done(todo.id)} >
-            <input type="checkbox" checked/>
-            <div >{todo.label} </div> 
-        </div>
+          <Item label={todo.label} onClick={() => done(todo.id)} checked={true}/>
         ); 
-      })}
+      })
+    }
     <hr/>
     {todos
-    .filter(todo => todo.done === true)
-    .map(todo => {
-      return <div>
-        <input type="checkbox"/>
-        <div onClick={() => undone(todo.id)}>{todo.label}</div>
-        </div>
-        })}
+      .filter(todo => todo.done === true)
+      .map(todo => {
+        return <Item label={todo.label} onClick={() => undone(todo.id)} />
+      })
+    }
   </div>
 
 }
